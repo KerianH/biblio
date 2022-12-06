@@ -1,5 +1,6 @@
 <html>
 <body>
- <?php echo $_POST["txtName"]; ?>
+ <?php echo $_GET["txtRecherche"]; 
+ ?>
 </body>
 </html>
