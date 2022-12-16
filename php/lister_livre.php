@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm-11">
             <!--Barre de recherche-->
-            <form action="./php/lister_livre.php" method="get">
+            <form action="lister_livre.php" method="get">
                 <div class="container pt-3">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -41,7 +41,7 @@
         <div class="col-sm-7">
             <?php
 require_once('connexion.php');
-$stmt = $connexion->prepare("SELECT titre, nom, prenom, anneeparution from livre, auteur where livre.noauteur = auteur.noauteur and nom like :nom;");
+$stmt = $connexion->prepare("SELECT * from livre, auteur where livre.noauteur = auteur.noauteur and nom like :nom;");
 $nom = $_GET["txtRecherche"];
 $stmt->bindValue(":nom", $nom); // pas de troisième paramètre STR par défaut
 $stmt->setFetchMode(PDO::FETCH_OBJ);
@@ -51,8 +51,7 @@ $stmt->execute();
 while($enregistrement = $stmt->fetch())
 
 {
-  // Affichage des champs nom et prenom de la table 'utilisateur'
-  echo '<a class="text-center" action="detail.php">' , $enregistrement->titre , ' ' , $enregistrement->anneeparution, '</a>' ;
+  echo "<a class='text-center' action='detail.php' href='http://127.0.0.1/Biblio/php/detail.php?nolivre=".$enregistrement->nolivre."'>".$enregistrement->titre,  $enregistrement->anneeparution.'</a><BR>';
 }
 ?>
         </div>

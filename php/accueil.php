@@ -13,27 +13,52 @@
 </head>
 
 <body class="bg-dark text-white">
-    <nav class="navbar navbar-expand-sm bg-light">
-        <div class="row">
-            <div class="col-sm-7">
-                <!-- Links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 3</a>
-                    </li>
-                </ul>
-            </div>
-            </nav>
+<?php
+require_once('connexion.php');
+?>    
+<div class="row">
+        <div class="col-sm-11">
+            <!--Barre de recherche-->
+            <form action="./php/lister_livre.php" method="get">
+                <div class="container pt-3">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-primary" type="submit" id="RButton">Search</button>
+                        </div>
+                        <input type="txt" class="form-control" name="txtRecherche" id="RechercheBarre"
+                            placeholder="Rechercher un livre (titre, nom d'auteur) ">
+                    </div>
+                </div>
+            </form>
         </div>
+        <!--Panier-->
+        <div class="col-sm-1">
+            <a class="btn btn-outline-warning">Panier</a>
+        </div>
+    </div>
 
-
-    
+    <div class="row">
+        <div class="col-sm-7">
+        </div>
+        <!--Formulaire connexion-->
+        <form action="./php/login.php" method="post">
+            <div class="col-sm-5">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <label for="usr">Name:</label>
+                        <input type="text" class="form-control" id="InputFormul" name="txtName">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="InputFormul" name="txtPassword">
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-primary" id="BlueButton" type="submit">Se Connecter</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
 </body>
 
 </html>
