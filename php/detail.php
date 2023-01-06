@@ -47,8 +47,8 @@ $stmt->bindValue(":nolivre", $nolivre); // pas de troisième paramètre STR par 
 
 $stmt->execute();
 $enregistrement = $stmt->fetch();
-echo $enregistrement->resume; 
-echo ' Date de parution : ' ,$enregistrement->anneeparution ;
+echo '<p id=p1>'.$enregistrement->resume.'</p>'; 
+echo ' ISBN : ' ,$enregistrement->isbn13;
 ?>
         </div>
 
@@ -71,10 +71,18 @@ echo ' Date de parution : ' ,$enregistrement->anneeparution ;
             </form>
         </div>
     </div>
-
+<?php
+$stmt = $connexion->prepare("SELECT nolivre FROM emprunter");
+$stmt->setFetchMode(PDO::FETCH_OBJ);
+if ($nolivre)
+?>
     <div class="row">
-        <h2 class="text-succes">Disponible</h2>
+        <div class="col-sm-7">
+            <h2 class="text-success" id="dispo">Disponible</h2>
+            <h3 class="text-danger" id="logpls">Pour pouvoir réserver vous devez posséder un compte et vous identifier.</h3>
+        </div>
+        <div class="col-sm-5">
+        </div>
     </div>
 </body>
-
 </html>

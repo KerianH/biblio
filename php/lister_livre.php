@@ -13,8 +13,6 @@
 </head>
 
 <body class="bg-dark text-white">
-
-
     <div class="row">
         <div class="col-sm-11">
             <!--Barre de recherche-->
