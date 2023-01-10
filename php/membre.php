@@ -36,7 +36,7 @@
 
     <div class="row">
         <div class="col-sm-7">
-            <form>
+            <form method="POST">
                 <div class="container-fluid">
                     <div class="form-group">
                         <label for="usr">Mail</label>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="usr">Code Postal</label>
-                        <input type="text" class="form-control" name="txtCodePostale">
+                        <input type="text" class="form-control" name="txtCodePostal">
                     </div>
                     <div class="input-group-prepend">
                         <button type="submit" class="btn">Créer un membre</button>
@@ -73,8 +73,8 @@
             </form>
         </div>
         <?php
-require_once('connexion.php');
 
+require_once('connexion.php');
 
 $stmt = $connexion->prepare("INSERT INTO utilisateur (mel, motdepasse, nom, prenom, adresse, ville, codepostal, profil) VALUES (:mel, :motdepasse, :nom, :prenom, :adresse, :ville, :codepostal, :profil)");
 
@@ -84,17 +84,17 @@ $nom = $_POST["txtNom"];
 $prenom = $_POST["txtPrenom"];
 $address = $_POST["txtAddress"];
 $ville = $_POST["txtVille"];
-$CodePostale = $_POST["txtCodePostale"];
+$CodePostale = $_POST["txtCodePostal"];
 $profil = "Membre";
 
-$stmt->bind_param(':mel', $email);
-$stmt->bind_param(':motdepasse', $motDePasse);
-$stmt->bind_param(':nom',$nom);
-$stmt->bind_param(':prenom',$prenom);
-$stmt->bind_param(':adresse',$address);
-$stmt->bind_param(':ville',$ville);
-$stmt->bind_param(':codepostale',$CodePostale);
-$stmt->bind_param(':profil',$profil);
+$stmt->bindValue(':mel', $email);
+$stmt->bindValue(':motdepasse', $motDePasse);
+$stmt->bindValue(':nom',$nom);
+$stmt->bindValue(':prenom',$prenom);
+$stmt->bindValue(':adresse',$address);
+$stmt->bindValue(':ville',$ville);
+$stmt->bindValue(':codepostale',$CodePostale);
+$stmt->bindValue(':profil',$profil);
 $stmt->setFetchMode(PDO::FETCH_OBJ);
 
 $stmt->execute();
