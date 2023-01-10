@@ -73,20 +73,33 @@
             </form>
         </div>
         <?php
-require_once('connexion.php')
+require_once('connexion.php');
 
 
-$stmt = $connexion->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $firstname, $lastname, $email);
+$stmt = $connexion->prepare("INSERT INTO utilisateur (mel, motdepasse, nom, prenom, adresse, ville, codepostal, profil) VALUES (:mel, :motdepasse, :nom, :prenom, :adresse, :ville, :codepostal, :profil)");
 
-$email = "john@example.com";
-$motDePasse = "root";
-$nom = "John";
-$prenom = "Doe";
-$address = 
+$email = $_POST["txtMel"];
+$motDePasse = $_POST["txtMdp"];
+$nom = $_POST["txtNom"];
+$prenom = $_POST["txtPrenom"];
+$address = $_POST["txtAddress"];
+$ville = $_POST["txtVille"];
+$CodePostale = $_POST["txtCodePostale"];
+$profil = "Membre";
+
+$stmt->bind_param(':mel', $email);
+$stmt->bind_param(':motdepasse', $motDePasse);
+$stmt->bind_param(':nom',$nom);
+$stmt->bind_param(':prenom',$prenom);
+$stmt->bind_param(':adresse',$address);
+$stmt->bind_param(':ville',$ville);
+$stmt->bind_param(':codepostale',$CodePostale);
+$stmt->bind_param(':profil',$profil);
+$stmt->setFetchMode(PDO::FETCH_OBJ);
 
 $stmt->execute();
-
+$NbLignes = $stmt->rowCount();
+echo $NbLignes." ligne() insérée(s).<BR>";
 ?>
         <!--Formulaire connexion-->
         <div class="col-sm-5">
