@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <title>Biblio-Drives</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -33,37 +32,37 @@
             <a class="btn btn-outline-warning">Panier</a>
         </div>
     </div>
-
+    <div class="container">
     <div class="row">
         <div class="col-sm-7">
             <form method="POST">
                 <div class="container">
                     <div class="form-group">
-                        <label for="usr">Mail</label>
+                        <label for="FormMembre">Mail</label>
                         <input type="text" class="form-control" name="txtMel">
                     </div>
                     <div class="form-group">
-                        <label for="usr">Mots De Passe</label>
+                        <label for="FormMembre">Mots De Passe</label>
                         <input type="text" class="form-control" name="txtMdp">
                     </div>
                     <div class="form-group">
-                        <label for="usr">Nom</label>
+                        <label for="FormMembre">Nom</label>
                         <input type="text" class="form-control" name="txtNom">
                     </div>
                     <div class="form-group">
-                        <label for="usr">Prenom</label>
+                        <label for="FormMembre">Prenom</label>
                         <input type="text" class="form-control" name="txtPrenom">
                     </div>
                     <div class="form-group">
-                        <label for="usr">Adresse</label>
+                        <label for="FormMembre">Adresse</label>
                         <input type="text" class="form-control" name="txtAddress">
                     </div>
                     <div class="form-group">
-                        <label for="usr">Ville</label>
+                        <label for="FormMembre">Ville</label>
                         <input type="text" class="form-control" name="txtVille">
                     </div>
                     <div class="form-group">
-                        <label for="usr">Code Postal</label>
+                        <label for="FormMembre">Code Postal</label>
                         <input type="text" class="form-control" name="txtCodePostal">
                     </div>
                     <div class="input-group-prepend">
@@ -72,10 +71,10 @@
                 </div>
             </form>
         </div>
+    </div>
+    
         <?php
-
 require_once('connexion.php');
-
 $stmt = $connexion->prepare("INSERT INTO utilisateur (mel, motdepasse, nom, prenom, adresse, ville, codepostal, profil) VALUES (:mel, :motdepasse, :nom, :prenom, :adresse, :ville, :codepostal, :profil)");
 
 $email = $_POST["txtMel"];
@@ -95,8 +94,8 @@ $stmt->bindValue(':adresse',$address);
 $stmt->bindValue(':ville',$ville);
 $stmt->bindValue(':codepostale',$CodePostale);
 $stmt->bindValue(':profil',$profil);
-$stmt->setFetchMode(PDO::FETCH_OBJ);
 
+$stmt->setFetchMode(PDO::FETCH_OBJ);
 $stmt->execute();
 $NbLignes = $stmt->rowCount();
 echo $NbLignes." ligne() insérée(s).<BR>";
@@ -107,11 +106,11 @@ echo $NbLignes." ligne() insérée(s).<BR>";
                 <div class="container-fluid">
                     <div class="form-group">
                         <label for="usr">Name:</label>
-                        <input type="text" class="form-control" id="InputFormul" name="txtName">
+                        <input type="text" class="form-control" id="LoginFormul" name="txtName">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="InputFormul" name="txtPassword">
+                        <input type="password" class="form-control" id="LoginFormul" name="txtPassword">
                     </div>
                     <div class="input-group-prepend">
                         <button class="btn btn-outline-primary" id="BlueButton" type="submit">Se Connecter</button>
