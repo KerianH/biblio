@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-sm-7">
             <form method="POST">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="form-group">
                         <label for="usr">Mail</label>
                         <input type="text" class="form-control" name="txtMel">
@@ -67,7 +67,7 @@
                         <input type="text" class="form-control" name="txtCodePostal">
                     </div>
                     <div class="input-group-prepend">
-                        <button type="submit" class="btn">Créer un membre</button>
+                        <button type="submit" class="btn btn-outline-primary">Créer un membre</button>
                     </div>
                 </div>
             </form>
@@ -122,5 +122,4 @@ echo $NbLignes." ligne() insérée(s).<BR>";
     </div>
     </div>
 </body>
-
 </html>
