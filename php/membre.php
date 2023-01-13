@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Biblio-Drives</title>
+    <title>Biblio-Drives   TEST GIT</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
@@ -86,13 +86,16 @@ $ville = $_POST["txtVille"];
 $CodePostale = $_POST["txtCodePostal"];
 $profil = "Membre";
 
+var_dump($_POST);
+
+
 $stmt->bindValue(':mel', $email);
 $stmt->bindValue(':motdepasse', $motDePasse);
 $stmt->bindValue(':nom',$nom);
 $stmt->bindValue(':prenom',$prenom);
 $stmt->bindValue(':adresse',$address);
 $stmt->bindValue(':ville',$ville);
-$stmt->bindValue(':codepostale',$CodePostale);
+$stmt->bindValue(':codepostal',$CodePostale);
 $stmt->bindValue(':profil',$profil);
 
 $stmt->setFetchMode(PDO::FETCH_OBJ);
