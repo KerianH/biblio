@@ -38,7 +38,7 @@
             <div class="col-sm-7">
                 <?php
 require_once('connexion.php');
-$stmt = $connexion->prepare("INSERT INTO auteur (nom, prenom) VALUES (:nom, :prenom)");
+$stmt = $connexion->prepare("INSERT INTO livre (noauteur, titre, isbn13, anneeparution, resume, dateajout, image) VALUES (:noauteur ,:titre, :isbn13, :anneeparution, :resume, :dateajout, :image)");
 if(!isset($_POST['btnEnvoyer']))
 {
     echo '<form method="post">
@@ -75,27 +75,22 @@ if(!isset($_POST['btnEnvoyer']))
 }
 else
 {
-  $nom = $_POST['txtNom']; 
-  $prenom = $_POST["txtPrenom"];
-  $stmt->bindValue(':nom',$nom);
-    $stmt->bindValue(':prenom',$prenom);
+    $noauteur = $_POST['txtAuteur'];
+    $titre = $_POST['txtTitre'];
+    $isbn13 = $_POST['txtIsbn'];
+    $anneeparution = $_POST['txtAnnee'];
+    $resume = $_POST['txtResume'];
+    $image = $_POST['image'];
+    $stmt->bindValue(':noauteur',$noauteur);
+    $stmt->bindValue(':titre',$titre);
+    $stmt->bindValue(':isbn13',$isbn13);
+    $stmt->bindValue(':anneeparution',$anneeparution);
+    $stmt->bindValue(':resume',$resume);
+    $stmt->bindValue(':image',$image);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
     $stmt->execute();
-    $stmt = $connexion->prepare("INSERT INTO livre (noauteur, titre, isbn13, anneeparution, resume, dateajout, image) VALUES (:noauteur ,:titre, :isbn13, :anneeparution, :resume, :dateajout, :image)");
-$titre = $_POST['txtTitre'];
-$isbn13 = $_POST['txtIsbn'];
-$anneeparution = $_POST['txtAnnee'];
-$resume = $_POST['txtResume'];
-$image = $_POST['image'];
-$stmt->bindValue(':titre',$titre);
-$stmt->bindValue(':isbn13',$isbn13);
-$stmt->bindValue(':anneeparution',$anneeparution);
-$stmt->bindValue(':resume',$resume);
-$stmt->bindValue(':image',$image);
-$stmt->setFetchMode(PDO::FETCH_OBJ);
-$stmt->execute();
-$NbLignes = $stmt->rowCount();
-echo $NbLignes." ligne() insérée(s).<BR>";
+    $NbLignes = $stmt->rowCount();
+    echo $NbLignes." ligne() insérée(s).<BR>";
 }
 
 ?>
