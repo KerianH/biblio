@@ -33,84 +33,75 @@
             <a class="btn btn-outline-warning">Panier</a>
         </div>
     </div>
-
-
     <div class="container">
         <div class="row">
             <div class="col-sm-7">
                 <?php
 require_once('connexion.php');
-$stmt = $connexion->prepare("INSERT INTO utilisateur (mel, motdepasse, nom, prenom, adresse, ville, codepostal, profil) VALUES (:mel, :motdepasse, :nom, :prenom, :adresse, :ville, :codepostal, :profil)");
-if(!isset($_POST['btnEnvoyer'])) 
-
-{/* L'entrée btnEnvoyer est vide = le formulaire n'a pas été posté, on affiche le formulaire */
-
-    echo '<form method="POST">
+$stmt = $connexion->prepare("INSERT INTO auteur (nom, prenom) VALUES (:nom, :prenom)");
+if(!isset($_POST['btnEnvoyer']))
+{
+    echo '<form method="post">
     <div class="container">
         <div class="form-group">
-            <label for="FormMembre">Mail</label>
-            <input type="email" class="form-control" name="txtMel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="exemple@gmail.com">
+            <label for="FormBook">Auteur</label>
+            <input type="text" class="form-control" name="txtAuteur">
         </div>
         <div class="form-group">
-            <label for="FormMembre">Mots De Passe</label>
-            <input type="password" class="form-control" name="txtMdp" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Majuscule, caractere spéciaux ect">
+            <label for="FormBook">Titre</label>
+            <input type="text" class="form-control" name="txtTitre">
         </div>
         <div class="form-group">
-            <label for="FormMembre">Nom</label>
-            <input type="text" class="form-control" name="txtNom" required size="45" pattern="[A-Z]{4,8}" placeholder="4 à 8 lettres en majuscule">
+            <label for="FormBook">isbn13</label>
+            <input type="text" class="form-control" name="txtIsbn">
         </div>
         <div class="form-group">
-            <label for="FormMembre">Prenom</label>
-            <input type="text" class="form-control" name="txtPrenom" required size="45" pattern="[a-z]{4,8}" placeholder="4 à 8 lettres en minuscules">
+            <label for="FormBook">Année de parution</label>
+            <input type="text" class="form-control" name="txtAnnee">
         </div>
         <div class="form-group">
-            <label for="FormMembre">Adresse</label>
-            <input type="text" class="form-control" name="txtAddress" id="zip" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$">
+            <label for="FormBook">Resumer</label>
+            <textarea class="form-control" rows="5" name="txtResume"></textarea>
         </div>
         <div class="form-group">
-            <label for="FormMembre">Ville</label>
-            <input type="text" class="form-control" name="txtVille">
-        </div>
-        <div class="form-group">
-            <label for="FormMembre">Code Postal</label>
-            <input type="text" class="form-control" name="txtCodePostal" pattern="[0-9]{5}" placeholder="ex : 13000">
+            <label for="FormBook">Image</label>
+            <input type="file" class="form-control-file border" name="file">
         </div>
         <div class="input-group-prepend">
-            <button type="submit" name="btnEnvoyer" class="btn btn-outline-primary">Créer un membre</button>
+            <button type="submit" name="btnEnvoyer" class="btn btn-outline-primary">Add book</button>
         </div>
     </div>
-</form>';}
-else 
-
-/* L'utilisateur a cliqué sur Envoyer, l'entrée btnEnvoyer <> vide, on traite le formulaire */
-
-{   
-    $email = $_POST["txtMel"];
-    $motDePasse = $_POST["txtMdp"];
-    $nom = $_POST["txtNom"];
-    $prenom = $_POST["txtPrenom"];
-    $address = $_POST["txtAddress"];
-    $ville = $_POST["txtVille"];
-    $CodePostale = $_POST["txtCodePostal"];
-    $profil = "Membre";
-    var_dump($_POST);
-    $stmt->bindValue(':mel', $email);
-    $stmt->bindValue(':motdepasse', $motDePasse);
-    $stmt->bindValue(':nom',$nom);
+</form>';
+}
+else
+{
+  $nom = $_POST['txtNom']; 
+  $prenom = $_POST["txtPrenom"];
+  $stmt->bindValue(':nom',$nom);
     $stmt->bindValue(':prenom',$prenom);
-    $stmt->bindValue(':adresse',$address);
-    $stmt->bindValue(':ville',$ville);
-    $stmt->bindValue(':codepostal',$CodePostale);
-    $stmt->bindValue(':profil',$profil);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
     $stmt->execute();
-    $NbLignes = $stmt->rowCount();
-    echo $NbLignes." ligne() insérée(s).<BR>";
+    $stmt = $connexion->prepare("INSERT INTO livre (noauteur, titre, isbn13, anneeparution, resume, dateajout, image) VALUES (:noauteur ,:titre, :isbn13, :anneeparution, :resume, :dateajout, :image)");
+$titre = $_POST['txtTitre'];
+$isbn13 = $_POST['txtIsbn'];
+$anneeparution = $_POST['txtAnnee'];
+$resume = $_POST['txtResume'];
+$image = $_POST['image'];
+$stmt->bindValue(':titre',$titre);
+$stmt->bindValue(':isbn13',$isbn13);
+$stmt->bindValue(':anneeparution',$anneeparution);
+$stmt->bindValue(':resume',$resume);
+$stmt->bindValue(':image',$image);
+$stmt->setFetchMode(PDO::FETCH_OBJ);
+$stmt->execute();
+$NbLignes = $stmt->rowCount();
+echo $NbLignes." ligne() insérée(s).<BR>";
 }
+
 ?>
             </div>
+            <!--Formulaire connexion-->
             <div class="col-sm-5">
-                <!--Formulaire connexion-->
                 <form action="./php/login.php" method="post">
                     <div class="container-fluid">
                         <div class="form-group">
@@ -126,13 +117,7 @@ else
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
-
-
-
     </div>
-    </div>
-</body>
-
-</html>
