@@ -55,31 +55,36 @@ session_start();
     <div class="container">
         <h1>Bienvenue sur Biblio-Drive</h1>
     </div>
-
-
+    <!--Barre de recherche-->
     <div class="row">
         <div class="col-sm-11">
-            <!--Barre de recherche-->
-            <form action="./php/lister_livre.php" method="get">
-                <div class="container pt-3">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-primary" type="submit" id="RButton">Search</button>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <form action="./php/lister_livre.php" method="get">
+                    <div class="container pt-3">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary" type="submit" id="RButton">Search</button>
+                            </div>
+                            <input type="txt" class="form-control" name="txtRecherche" id="RechercheBarre"
+                                placeholder="Rechercher un livre (titre, nom d'auteur) ">
                         </div>
-                        <input type="txt" class="form-control" name="txtRecherche" id="RechercheBarre"
-                            placeholder="Rechercher un livre (titre, nom d'auteur) ">
                     </div>
-                </div>
-            </form>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="btn btn-outline-primary" href="./php/membre.php" id="BlueButton">Add Membre</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="btn btn-outline-primary" href="./php/AddBook.php" id="BlueButton">Add Book</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <!--Panier-->
         <div class="col-sm-1">
             <a class="btn btn-outline-warning">Panier</a>
         </div>
     </div>
-
-
-
 
 
     <!--IMG-->
@@ -134,10 +139,13 @@ session_start();
             </div>
     </div>
     </form>
-    <div class="youtube_player" videoID="PJCvmeRILLk" width="560" height="315" theme="light" rel="0" controls="1" showinfo="1" autoplay="0"></div>
+    <div class="youtube_player" videoID="PJCvmeRILLk" width="560" height="315" theme="light" rel="0" controls="1"
+        showinfo="1" autoplay="0"></div>
+        <?php include './php/pied_de_page.php'?>
 </body>
 <?php
 $x = 10;
 $_SESSION["y"] = 10;
 ?>
+
 </html>

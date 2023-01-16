@@ -21,8 +21,10 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $result['PASSWORD'])) {
             $_SESSION['user_id'] = $result['ID'];
               echo '<p class="success">Connexion réussie</p>';
+              $connexion = true;
         } else {
             echo '<p class="error">Username ou password incorect</p>';
+            $connexion = false;
         }
     }
 }

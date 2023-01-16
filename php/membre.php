@@ -57,11 +57,11 @@ if(!isset($_POST['btnEnvoyer']))
         </div>
         <div class="form-group">
             <label for="FormMembre">Nom</label>
-            <input type="text" class="form-control" name="txtNom" required size="45" pattern="[A-Z]{4,8}" placeholder="4 à 8 lettres en majuscule">
+            <input type="text" class="form-control" name="txtNom" required size="45" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" placeholder="4 à 8 lettres en majuscule">
         </div>
         <div class="form-group">
             <label for="FormMembre">Prenom</label>
-            <input type="text" class="form-control" name="txtPrenom" required size="45" pattern="[a-z]{4,8}" placeholder="4 à 8 lettres en minuscules">
+            <input type="text" class="form-control" name="txtPrenom" required size="45" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" placeholder="4 à 8 lettres en minuscules">
         </div>
         <div class="form-group">
             <label for="FormMembre">Adresse</label>
@@ -106,6 +106,7 @@ else
     $stmt->execute();
     $NbLignes = $stmt->rowCount();
     echo $NbLignes." ligne() insérée(s).<BR>";
+    header('Refresh:3;url=index.php');
 }
 ?>
             </div>

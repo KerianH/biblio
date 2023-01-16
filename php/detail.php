@@ -71,21 +71,28 @@ echo ' ISBN : ' ,$enregistrement->isbn13;
             </form>
         </div>
     </div>
-<?php
+    
+    <div class="row">
+        <div class="col-sm-7">
+            
+        <?php
 $stmt = $connexion->prepare("SELECT nolivre FROM emprunter");
 $stmt->setFetchMode(PDO::FETCH_OBJ);
 $var = $nolivre;
-if ($!isset($var)){
-    
+if (isset($var)){
+    echo '<h2 class="text-success" id="dispo">Disponible</h2>';
 }
+else
+{
+    echo '<h2 class="text-danger" id="dispo">Indisponible</h2>';
+}
+
 ?>
-    <div class="row">
-        <div class="col-sm-7">
-            <h2 class="text-success" id="dispo">Disponible</h2>
-            <h3 class="text-danger" id="logpls">Pour pouvoir réserver vous devez posséder un compte et vous identifier.</h3>
         </div>
         <div class="col-sm-5">
+        <h3 class="text-danger" id="logpls">Pour pouvoir réserver vous devez posséder un compte et vous identifier.</h3>
         </div>
     </div>
 </body>
+
 </html>

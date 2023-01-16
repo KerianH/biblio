@@ -45,23 +45,23 @@ if(!isset($_POST['btnEnvoyer']))
     <div class="container">
         <div class="form-group">
             <label for="FormBook">Numero Auteur</label>
-            <input type="text" class="form-control" name="txtAuteur">
+            <input type="text" class="form-control" name="txtAuteur" pattern="[0-9]{1}">
         </div>
         <div class="form-group">
             <label for="FormBook">Titre</label>
-            <input type="text" class="form-control" name="txtTitre">
+            <input type="text" class="form-control" name="txtTitre" pattern="[a-zA-Z0-9]+" placeholder="Les miserables">
         </div>
         <div class="form-group">
             <label for="FormBook">isbn13</label>
-            <input type="text" class="form-control" name="txtIsbn">
+            <input type="text" class="form-control" name="txtIsbn" pattern="(?:(?=.{17}$)97[89][ -](?:[0-9]+[ -]){2}[0-9]+[ -][0-9]|97[89][0-9]{10}|(?=.{13}$)(?:[0-9]+[ -]){2}[0-9]+[ -][0-9Xx]|[0-9]{9}[0-9Xx])" placeholder="9782217710019">
         </div>
         <div class="form-group">
             <label for="FormBook">Année de parution</label>
-            <input type="text" class="form-control" name="txtAnnee">
+            <input type="text" class="form-control" name="txtAnnee" pattern=[0-9]{4} placeholder="1945">
         </div>
         <div class="form-group">
             <label for="FormBook">Resumer</label>
-            <textarea class="form-control" rows="5" name="txtResume"></textarea>
+            <textarea class="form-control" rows="5" name="txtResume" pattern="[A-Za-z]"></textarea>
         </div>
         <div class="form-group">
             <label for="FormBook">Image</label>
@@ -91,6 +91,7 @@ else
     $stmt->execute();
     $NbLignes = $stmt->rowCount();
     echo $NbLignes." ligne() insérée(s).<BR>";
+    header('Refresh:3;url=index.php');
 }
 
 ?>
