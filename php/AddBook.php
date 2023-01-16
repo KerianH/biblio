@@ -38,13 +38,13 @@
             <div class="col-sm-7">
                 <?php
 require_once('connexion.php');
-$stmt = $connexion->prepare("INSERT INTO livre (noauteur, titre, isbn13, anneeparution, resume, dateajout, image) VALUES (:noauteur ,:titre, :isbn13, :anneeparution, :resume, :dateajout, :image)");
+$stmt = $connexion->prepare("INSERT INTO livre (noauteur, titre, isbn13, anneeparution, resume, image) VALUES (:noauteur ,:titre, :isbn13, :anneeparution, :resume, :image)");
 if(!isset($_POST['btnEnvoyer']))
 {
     echo '<form method="post">
     <div class="container">
         <div class="form-group">
-            <label for="FormBook">Auteur</label>
+            <label for="FormBook">Numero Auteur</label>
             <input type="text" class="form-control" name="txtAuteur">
         </div>
         <div class="form-group">
@@ -65,7 +65,7 @@ if(!isset($_POST['btnEnvoyer']))
         </div>
         <div class="form-group">
             <label for="FormBook">Image</label>
-            <input type="file" class="form-control-file border" name="file">
+            <input type="file" class="form-control-file border" name="image">
         </div>
         <div class="input-group-prepend">
             <button type="submit" name="btnEnvoyer" class="btn btn-outline-primary">Add book</button>

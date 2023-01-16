@@ -35,7 +35,8 @@ session_start();
         "useExternalCss": false,
         /* Si false, tarteaucitron.css sera chargé */
         //"cookieDomain": ".my-multisite-domaine.fr", /* Cookie multisite - cas où SOUS DOMAINE */
-        "readmoreLink": "/cookiespolicy", /* Lien vers la page "Lire plus" A FAIRE OU PAS  */
+        "readmoreLink": "/cookiespolicy",
+        /* Lien vers la page "Lire plus" A FAIRE OU PAS  */
     });
     (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
     </script>
@@ -43,14 +44,14 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link rel="stylesheet" href="./bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" href="./bootstrap4/css/bootstrap.css" />
+    <link rel="stylesheet" href="./bootstrap4/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="bg-dark text-white">
-    <?php
-$x = 10;
-$_SESSION["y"] = 10;
-?>
     <div class="container">
         <h1>Bienvenue sur Biblio-Drive</h1>
     </div>
@@ -133,10 +134,10 @@ $_SESSION["y"] = 10;
             </div>
     </div>
     </form>
-    <div class="container">
-        <div class="row">
-        <div class="youtube_player" videoID="PJCvmeRILLk" width="560" height="315" theme="light" rel="0" controls="1" showinfo="1" autoplay="0"></div>
-        </div>
-    </div>
+    <div class="youtube_player" videoID="PJCvmeRILLk" width="560" height="315" theme="light" rel="0" controls="1" showinfo="1" autoplay="0"></div>
 </body>
+<?php
+$x = 10;
+$_SESSION["y"] = 10;
+?>
 </html>

@@ -49,7 +49,7 @@ $stmt->execute();
 while($enregistrement = $stmt->fetch())
 
 {
-  echo "<a class='text-center' action='detail.php' href='http://127.0.0.1/Biblio/php/detail.php?nolivre=".$enregistrement->nolivre."'>".$enregistrement->titre,  $enregistrement->anneeparution.'</a><BR>';
+  echo "<a class='text-center' action='detail.php' href='http://127.0.0.1/Biblio/php/detail.php?nolivre=".$enregistrement->nolivre."'>".$enregistrement->titre, " " .$enregistrement->anneeparution.'</a><BR>';
 }
 ?>
         </div>

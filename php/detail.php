@@ -74,7 +74,10 @@ echo ' ISBN : ' ,$enregistrement->isbn13;
 <?php
 $stmt = $connexion->prepare("SELECT nolivre FROM emprunter");
 $stmt->setFetchMode(PDO::FETCH_OBJ);
-if ($nolivre)
+$var = $nolivre;
+if ($!isset($var)){
+    
+}
 ?>
     <div class="row">
         <div class="col-sm-7">
